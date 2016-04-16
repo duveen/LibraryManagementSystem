@@ -1,5 +1,6 @@
 package kr.o3selab.library.database;
 
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -99,6 +100,26 @@ public class DBManager {
     	}
     	
     	return "¿¡·¯";
+    }
+    
+    public boolean addBook(String name, Integer type, String author, String publisher, BigInteger isbn, Integer price, String commit) {
+    	
+    	String sql = "INSERT INTO book VALUES " + 
+    				"(NULL, '"+ name + "', '" + type + "', '" + author + "', '" + publisher + "', '" + isbn + "', '" + price + "', '" +
+    			    commit + "');";
+    	System.out.println(sql);
+    	try {
+    		pstmt = con.prepareStatement(sql);
+    		rs = pstmt.executeQuery();
+    		
+    		if(rs == null) {
+    			return false;
+    		}
+    		else
+    			return true;
+    	} catch (SQLException e) {
+    		return false;
+    	}
     }
 }
    
