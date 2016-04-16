@@ -35,6 +35,8 @@ public class LibrarySystemLogin extends JFrame implements ActionListener {
 		windowSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((windowSize.width - frameSize.width)/2, (windowSize.height - frameSize.height)/2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		getContentPane().setLayout(null);
 		
 		JLabel lblId = new JLabel("\uC544\uC774\uB514");
@@ -75,11 +77,14 @@ public class LibrarySystemLogin extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		id = textField.getText();
 		pw = passwordField.getText();
-		
+		JOptionPane success = new JOptionPane();
+		success.setBackground(Color.WHITE);
 		System.out.println(id + ", " + pw);
 		if(SystemMain.db.login(id, pw)) {
+			
 			String username = UserStatus.getUserName();
-			new JOptionPane().showMessageDialog(this,  username + " ´Ô! ¹Ý°©½À´Ï´Ù!", "È¯¿µ", JOptionPane.PLAIN_MESSAGE);
+			success.showMessageDialog(this,  username + " ´Ô! ¹Ý°©½À´Ï´Ù!", "È¯¿µ", JOptionPane.PLAIN_MESSAGE);
+			
 			this.setVisible(false);
 			new LibrarySystemGUI();
 		} else {

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import kr.o3selab.library.SystemMain;
+import kr.o3selab.library.conf.Book;
 
 public class DBManager {
     private String driver = "org.mariadb.jdbc.Driver";
@@ -107,7 +108,6 @@ public class DBManager {
     	String sql = "INSERT INTO book VALUES " + 
     				"(NULL, '"+ name + "', '" + type + "', '" + author + "', '" + publisher + "', '" + isbn + "', '" + price + "', '" +
     			    commit + "');";
-    	System.out.println(sql);
     	try {
     		pstmt = con.prepareStatement(sql);
     		rs = pstmt.executeQuery();
@@ -120,6 +120,38 @@ public class DBManager {
     	} catch (SQLException e) {
     		return false;
     	}
+    }
+    
+    public Vector<Book> getBookList(String line) {
+    	Vector<Book> v = new Vector<Book>();
+    	
+    	String sql = line;
+
+    	try {
+    		con.prepareStatement(sql);
+    		rs = pstmt.executeQuery();
+    		
+    		while(rs.next()) {
+    			
+    			int id = rs.getInt("id");
+    	    	String name = rs.getString("name");
+    	    	int type = rs.getInt("type");
+    	    	String author = rs.getString("author");
+    	    	String publisher = rs.getString("publisher");
+    	    	int date = rs.getInt("date");
+    	    	BigInteger isbn = new BigInteger(rs.getString("isbn"));
+    	    	int price = rs.getInt("price");
+    	    	String commit = rs.getString("commit");
+    	    	
+    			Book temp = new Book(id, name, type, author, publisher, date, isbn, price, commit);
+    			
+    			v.add(temp);
+    		}
+    	} catch (SQLException e) {
+    		return null;
+    	}
+    	
+    	return v;
     }
 }
    

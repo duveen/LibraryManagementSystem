@@ -1,6 +1,7 @@
 package kr.o3selab.library.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.o3selab.library.gui.child.AddBook;
+import kr.o3selab.library.gui.child.SearchBook;
 
 public class LibrarySystemGUI extends JFrame implements ActionListener {
 	private JDesktopPane desktopPane;
@@ -60,6 +62,7 @@ public class LibrarySystemGUI extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		
 		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		
 		
@@ -85,7 +88,8 @@ public class LibrarySystemGUI extends JFrame implements ActionListener {
 				break;
 				
 			case "도서 검색":
-				
+				SearchBook sb = new SearchBook();
+				mdiFormSetting(sb);
 				break;
 		}
 	}
