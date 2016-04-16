@@ -45,6 +45,8 @@ public class DBManager {
             	rsId = rs.getString("id");
                 rsPw = rs.getString("password");
                 if(rsId.equals(id) && rsPw.equals(password)){
+                	UserStatus.setUserID(rsId);
+                	UserStatus.setUserName(getName(rsId));
                 	SystemMain.currentLoginId = rsId;
                 	return true;
                 }

@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import kr.o3selab.library.SystemMain;
+import kr.o3selab.library.database.UserStatus;
 
 public class AddBook extends JInternalFrame implements ActionListener{
 	private JTextField bookNameField;
@@ -90,7 +91,7 @@ public class AddBook extends JInternalFrame implements ActionListener{
 		commitField.setBounds(95, 207, 270, 21);
 		getContentPane().add(commitField);
 		commitField.setColumns(10);
-		commitField.setText(SystemMain.db.getName(SystemMain.currentLoginId));
+		commitField.setText(UserStatus.getUserName());
 		commitField.setEnabled(false);
 		
 		JButton input = new JButton("ют╥б");

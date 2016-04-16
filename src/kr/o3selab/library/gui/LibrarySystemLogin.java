@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import kr.o3selab.library.SystemMain;
+import kr.o3selab.library.database.UserStatus;
 
 public class LibrarySystemLogin extends JFrame implements ActionListener {
 	@SuppressWarnings("deprecation")
@@ -77,7 +78,7 @@ public class LibrarySystemLogin extends JFrame implements ActionListener {
 		
 		System.out.println(id + ", " + pw);
 		if(SystemMain.db.login(id, pw)) {
-			String username = SystemMain.db.getName(id);
+			String username = UserStatus.getUserName();
 			new JOptionPane().showMessageDialog(this,  username + " ´Ô! ¹Ý°©½À´Ï´Ù!", "È¯¿µ", JOptionPane.PLAIN_MESSAGE);
 			this.setVisible(false);
 			new LibrarySystemGUI();
