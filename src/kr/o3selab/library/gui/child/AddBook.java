@@ -148,9 +148,8 @@ public class AddBook extends JInternalFrame implements ActionListener{
 		else isbn = new BigInteger(isbnField.getText());
 		if(priceField.getText().equals(""))  price = 0;
 		else price = Integer.parseInt(priceField.getText());
-		price = Integer.parseInt(priceField.getText());
 		commit = commitField.getText();
-				
+		
 		switch(str) {
 			case "입력":
 				if(name.equals(""))
@@ -159,10 +158,6 @@ public class AddBook extends JInternalFrame implements ActionListener{
 					JOptionPane.showMessageDialog(this, "저자를 입력해주세요", "주의", JOptionPane.ERROR_MESSAGE);
 				else if(publisher.equals(""))
 					JOptionPane.showMessageDialog(this, "출판사를 입력해주세요", "주의", JOptionPane.ERROR_MESSAGE);
-				else if(isbn == BigInteger.ZERO)
-					JOptionPane.showMessageDialog(this, "ISBN을 입력해주세요", "주의", JOptionPane.ERROR_MESSAGE);
-				else if(price == 0)
-					JOptionPane.showMessageDialog(this, "가격을 입력해주세요", "주의", JOptionPane.ERROR_MESSAGE);
 				else {
 					
 					if(SystemMain.db.addBook(name, convertBookTypeToInt(type), author, publisher, isbn, price, commit)) {
@@ -171,6 +166,7 @@ public class AddBook extends JInternalFrame implements ActionListener{
 					} else {
 						JOptionPane.showMessageDialog(this, "입력 실패!", "실패!", JOptionPane.ERROR_MESSAGE);
 					}
+					
 				}
 				break;
 			case "삭제":
