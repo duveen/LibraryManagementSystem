@@ -36,7 +36,7 @@ public class DBManager {
     }
     
     public boolean login(String id, String password) {
-        String sql = "SELECT * FROM user WHERE id = '"+ id + "' AND password = '" + password + "'";
+        String sql = "SELECT * FROM admin WHERE id = '"+ id + "' AND password = '" + password + "'";
         String rsId;
         String rsPw;
         try {
@@ -83,7 +83,7 @@ public class DBManager {
     }
     
     public String getName(String id) {
-    	String sql = "SELECT * FROM user WHERE id = '"+id+"';";
+    	String sql = "SELECT * FROM admin WHERE id = '"+id+"';";
     	
     	try {
     		pstmt = con.prepareStatement(sql);
@@ -103,11 +103,11 @@ public class DBManager {
     	return "¿¡·¯";
     }
     
-    public boolean addBook(String name, Integer type, String author, String publisher, BigInteger isbn, Integer price, String commit) {
+    public boolean addBook(String name, Integer type, String author, String publisher, Integer date, BigInteger isbn, Integer price, String commit) {
     	
     	String sql = "INSERT INTO book VALUES " + 
-    				"(NULL, '"+ name + "', '" + type + "', '" + author + "', '" + publisher + "', '" + isbn + "', '" + price + "', '" +
-    			    commit + "');";
+    				"(NULL, '"+ name + "', '" + type + "', '" + author + "', '" + publisher + "', '" + date  + "', '" + isbn + "', '" +
+    			price + "', '" + commit + "');";
     	try {
     		pstmt = con.prepareStatement(sql);
     		rs = pstmt.executeQuery();
@@ -126,9 +126,8 @@ public class DBManager {
     	Vector<Book> v = new Vector<Book>();
     	
     	String sql = line;
-
     	try {
-    		con.prepareStatement(sql);
+    		pstmt = con.prepareStatement(sql);
     		rs = pstmt.executeQuery();
     		
     		while(rs.next()) {

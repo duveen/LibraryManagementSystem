@@ -12,6 +12,7 @@ public class Book {
 	private BigInteger isbn;
 	private int price;
 	private String commit;
+	private boolean status;
 	
 	public Book(int id, String name, int type, String author, String publisher, int date, BigInteger isbn, int price, String commit) {
 		this.id = id;
@@ -23,6 +24,7 @@ public class Book {
 		this.isbn = isbn;
 		this.price = price;
 		this.commit = commit;
+		this.status = false;
 	}
 	
 	public int getId() {

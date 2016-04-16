@@ -3,12 +3,15 @@ package kr.o3selab.library.gui.child;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ListIterator;
 import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -19,6 +22,7 @@ import kr.o3selab.library.conf.Book;
 public class SearchBook extends JInternalFrame implements ActionListener {
 	private JTextField searchField;
 	private JList<String> list;
+	private JScrollPane jp;
 	
 	public SearchBook() {
 		setBounds(0, 0, 510, 300);
@@ -47,7 +51,7 @@ public class SearchBook extends JInternalFrame implements ActionListener {
 		getContentPane().add(searchButton);
 		
 		list = new JList<String>();
-		JScrollPane jp = new JScrollPane(list);
+		jp = new JScrollPane(list);
 		jp.setBounds(24, 59, 452, 186);
 		list.setBounds(24, 59, 452, 186);
 		getContentPane().add(jp);
@@ -60,12 +64,21 @@ public class SearchBook extends JInternalFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM book";
-		
-		// list.
+		String sql = "SELECT * FROM book;";
 		
 		Vector<Book> v = SystemMain.db.getBookList(sql);
-		
-		
+		if(v == null) {
+			JOptionPane.showMessageDialog(this,  "검색결과가 존재하지 않습니다", "결과없음", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		else {			
+			DefaultListModel<String> listModel = new DefaultListModel<String>();
+			
+			ListIterator<Book> itr = v.listIterator();
+			while(itr.hasNext()){
+				listModel.addElement(itr.next().getName());
+			}
+			
+			list.setModel(listModel);		}
 	}
 }
