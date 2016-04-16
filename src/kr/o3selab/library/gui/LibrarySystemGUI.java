@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.o3selab.library.gui.child.AddBook;
+import kr.o3selab.library.gui.child.AddUser;
 
 public class LibrarySystemGUI extends JFrame implements ActionListener {
 	private JDesktopPane desktopPane;
@@ -66,6 +67,8 @@ public class LibrarySystemGUI extends JFrame implements ActionListener {
 		exitProgram.addActionListener(this);
 		addBookItem.addActionListener(this);
 		searchBookItem.addActionListener(this);
+		userAddItem.addActionListener(this);
+		/*userSearchItem.addActionListener(this);유저검색*/
 	}
 
 	@Override
@@ -86,6 +89,10 @@ public class LibrarySystemGUI extends JFrame implements ActionListener {
 				
 			case "도서 검색":
 				
+				break;
+			case "사용자 등록":
+				AddUser au = new AddUser();
+				mdiFormSetting(au);
 				break;
 		}
 	}
