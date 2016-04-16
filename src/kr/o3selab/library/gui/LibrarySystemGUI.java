@@ -23,7 +23,7 @@ public class LibrarySystemGUI extends JFrame implements ActionListener {
 	public LibrarySystemGUI() {
 		setSize(800, 700);
 		setLocation(50,50);
-		setTitle("도서관관리시스템");
+		setTitle("도서관관리시스템!");
 		setDefaultLookAndFeelDecorated(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
